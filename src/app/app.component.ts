@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import LocomotiveScroll from 'locomotive-scroll';
 import { ResizeObserver } from '@juggle/resize-observer';
+import { ScrollService } from './services/scroll.service';
 
 @Component({
   selector: 'app-root',
@@ -9,31 +10,21 @@ import { ResizeObserver } from '@juggle/resize-observer';
 })
 export class AppComponent implements OnInit, AfterViewInit {
   title = 'portfolio';
-  scroll: any;
 
   @ViewChild('scrollContent') scrollContent: ElementRef;
 
+  constructor(private scrollService: ScrollService) { }
+
   ngOnInit() {
-    this.scroll = new LocomotiveScroll({
-      el: document.querySelector('[data-scroll-container]'),
-      smooth: true,
-      multiplier: .85
-    });
+    console.log("init")
+    let el = document.querySelector('[data-scroll-container]');
+    // this.scrollService.initScroll(el);
   }
 
   ngAfterViewInit() {
-    const ro = new ResizeObserver((entries, observer) => {
-      entries.forEach((entry, index) => {
-        const { inlineSize: width, blockSize: height } = entry.contentBoxSize[0];
-        if(this.scroll) {
-          setTimeout(() => {
-            this.scroll.update();
-          }, 0);
-        }
-      });
-    });
-
-    ro.observe(this.scrollContent.nativeElement);
+    let el = document.querySelector('[data-scroll-container]');
+    this.scrollService.initScroll(this.scrollContent.nativeElement);
+    // this.scrollService.updateScroll(this.scrollContent.nativeElement)
   }
 
 }
