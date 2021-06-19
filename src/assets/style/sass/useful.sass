@@ -1,0 +1,123 @@
+@import 'color-palette'
+
+.h-flex, .v-flex
+    display: flex
+    justify-content: space-between
+    align-items: center
+    flex-direction: row
+
+.v-flex
+    flex-direction: column
+
+.fake-list
+    list-style-type: none
+
+.fake-link
+    text-decoration: none
+    color: #000
+    &:hover
+        text-decoration: none
+        color: #000
+
+.purple
+    background: rgba(purple, .2)
+
+.pink
+    background: rgba(pink, .2)
+
+.yellow
+    background: rgba(yellow, .2)
+
+.orange
+    background: rgba(orange, .5)
+
+.blue
+    background: rgba(blue, .2)
+
+.w-md-auto
+    @media screen and (min-width: 768px)
+        width: fit-content !important
+
+.w-md-75
+    @media screen and (min-width: 976px)
+        width: 75% !important
+
+.w-fc
+    width: fit-content
+
+.vh-25
+    height: 25vh
+
+.vh-50
+    height: 50vh
+
+.vh-75
+    height: 75vh
+
+.vh-100
+    height: 100vh
+
+.zi-1
+    z-index: -1
+
+.zi0
+    z-index: 0
+
+.zi1
+    z-index: 1
+
+.zi2
+    z-index: 2
+
+.zi3
+    z-index: 3
+
+.zi4
+    z-index: 4
+
+.t-0
+    top: 0
+
+.b-0
+    bottom: 0
+
+.l-0
+    left: 0
+
+.r-0
+    right: 0
+
+.obj-fit-cover
+    object-fit: cover
+
+.bsb-15
+    box-shadow: 0 4px 10px 0 rgba(black, .15)
+
+.bsb-25
+    box-shadow: 0 4px 10px 0 rgba(black, .25)
+
+.bsb-50
+    box-shadow: 0 4px 10px 0 rgba(black, .50)
+
+.overflowx-scroll
+    overflow-x: scroll
+
+.overflowy-scroll
+    overflow-y: scroll
+
+.overflow-scroll
+    overflow: scroll
+
+.overflowx-hidden
+    overflow-x: hidden
+
+.overflowy-hidden
+    overflow-y: hidden
+
+.overflow-hidden
+    overflow: hidden
+
+.resp-img, .resp-img * img
+    width: 100% !important
+    height: auto !important
+    object-fit: cover !important
