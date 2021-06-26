@@ -22,8 +22,8 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    let el = document.querySelector('[data-scroll-container]');
-    this.scrollService.initScroll(this.scrollContent.nativeElement);
+    // let el = document.querySelector('[data-scroll-container]');
+    // this.scrollService.initScroll(this.scrollContent.nativeElement);
     // this.scrollService.updateScroll(this.scrollContent.nativeElement)
   }
 

@@ -13,6 +13,7 @@ export class ScrollService {
 
   constructor(private router: Router) {
     // if (!this.locoScroll) this.initScroll(document.querySelector('[data-scroll-container]'))
+    gsap.registerPlugin(ScrollTrigger)
   }
 
   initScroll(element) {
@@ -72,4 +73,5 @@ export class ScrollService {
   }
 
   get gsap() { return gsap }
+  get st() { return ScrollTrigger }
 }
