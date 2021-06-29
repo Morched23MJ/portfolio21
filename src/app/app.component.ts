@@ -2,6 +2,8 @@ import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angula
 import LocomotiveScroll from 'locomotive-scroll';
 import { ResizeObserver } from '@juggle/resize-observer';
 import { ScrollService } from './services/scroll.service';
+import { debounceTime, filter, map, tap } from 'rxjs/operators'
+import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -10,10 +12,30 @@ import { ScrollService } from './services/scroll.service';
 })
 export class AppComponent implements OnInit, AfterViewInit {
   title = 'portfolio';
+  loading$;
 
   @ViewChild('scrollContent') scrollContent: ElementRef;
 
-  constructor(private scrollService: ScrollService) { }
+  constructor(private router: Router, private scrollService: ScrollService) {
+    this.loading$ = this.router.events.pipe(
+      filter(
+        x =>
+          x instanceof NavigationStart ||
+          x instanceof NavigationEnd ||
+          x instanceof NavigationCancel ||
+          x instanceof NavigationError
+      ),
+      map(x => {
+        console.log(x);
+        if (x instanceof NavigationStart) return true
+        else setTimeout(() => {
+          return false
+        }, 2000);
+      }),
+      debounceTime(2000),
+      tap(x => console.log(x))
+    );
+  }
 
   ngOnInit() {
     console.log("init")
@@ -23,7 +45,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     // let el = document.querySelector('[data-scroll-container]');
-    // this.scrollService.initScroll(this.scrollContent.nativeElement);
+    // this.scrollService.initScroll(el);
     // this.scrollService.updateScroll(this.scrollContent.nativeElement)
   }
 

@@ -28,6 +28,33 @@ export class ContactComponent implements OnInit, AfterViewInit {
     //   duration: 5,
     // })
 
+    let sections = this.anim.gsap.utils.toArray(".hor");
+
+    this.anim.gsap.to(sections, {
+      xPercent: -100 * (sections.length - 1),
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".hors",
+        pin: true,
+        scrub: 1,
+        snap: 1 / (sections.length - 1),
+        end: () => "+=" + document.querySelector(".hors")['offsetWidth']
+      }
+    });
+
+    // let elements: any[] = this.anim.gsap.utils.toArray(document.querySelectorAll("hor > *"));
+
+    // elements.forEach((element) => {
+    //   this.anim.gsap.from(element, {
+    //     yPercent: 100,
+    //     opacity: 0,
+    //     scrollTrigger: {
+    //       scrub: 1,
+    //       start: element.parentNode.offsetLeft,
+    //       trigger: element.parentNode
+    //     }
+    //   });
+    // });
 
 
     const tl = this.anim.gsap.timeline({

@@ -17,7 +17,7 @@ export class ScrollService {
   }
 
   initScroll(element) {
-    gsap.registerPlugin(ScrollTrigger)
+    // gsap.registerPlugin(ScrollTrigger)
 
     this.locoScroll = new LocomotiveScroll({
       el: element,
@@ -41,16 +41,16 @@ export class ScrollService {
     ScrollTrigger.refresh();
 
     // INFO: when route changes, update Locomotive Scroll
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-        // Hide loading indicator
-        if (this.locoScroll) {
-          this.locoScroll.update();
-          this.locoScroll.scrollTo("top", { duration: 0 });
-          console.log("Updated.")
-        }
-      }
-    })
+    // this.router.events.subscribe(event => {
+    //   if (event instanceof NavigationEnd) {
+    //     // Hide loading indicator
+    //     if (this.locoScroll) {
+    //       this.locoScroll.update();
+    //       this.locoScroll.scrollTo("top", { duration: 0 });
+    //       console.log("Updated.");
+    //     }
+    //   }
+    // })
 
   }
 
