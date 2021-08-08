@@ -1,11 +1,38 @@
-<nav style="height: 75px;" class="p-3 px-5 d-flex justify-content-between align-items-center">
+<nav style="" class="p-5 d-flex justify-content-between align-items-center">
   <div class="brand">
-    <span class="fw-bold italic fs-30">23</span>
+    <span class="fs-24 fw-bold">morch23mj</span>
   </div>
-  <div class="links">
-    <span class="mx-3" [routerLink]="['/']" routerLinkActive="router-link-active">Home</span>
-    <span class="mx-3" [routerLink]="['/about']" routerLinkActive="router-link-active">About</span>
-    <span class="mx-3" [routerLink]="['/contact']" routerLinkActive="router-link-active">Contact</span>
-    <span class="ml-3" [routerLink]="['/contact']" routerLinkActive="router-link-active">MENU</span>
+  <div class="menu d-flex align-items-center">
+    <div class="d-flex flex-column me-2">
+      <div class="mb-1" style="width: 15px; height: 2px; background: white"></div>
+      <div class="mb-1" style="width: 15px; height: 2px; background: white"></div>
+    </div>
+    <div style="position: relative; top: -3px">menu</div>
+  </div>
+  <div class="menu-content">
+    <div class="links ps-5">
+      <ul class="fake-list p-0 m-0">
+        <li>
+          <a class="fs-64 fw-bold fake-link" routerLink="/">
+            Home
+          </a>
+        </li>
+        <li>
+          <a class="fs-64 fw-bold fake-link" routerLink="/about">
+            About
+          </a>
+        </li>
+        <li>
+          <a class="fs-64 fw-bold fake-link" routerLink="/projects">
+            Projects
+          </a>
+        </li>
+        <li>
+          <a class="fs-64 fw-bold fake-link" routerLink="/contact">
+            Contact
+          </a>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>

@@ -31,7 +31,8 @@
               "src/assets/style/sass/style.sass",
               "src/assets/style/sass/color-palette.sass",
               "src/assets/style/sass/fonts.sass",
-              "src/assets/style/sass/useful.sass"
+              "src/assets/style/sass/useful.sass",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": [],
             "vendorChunk": true,

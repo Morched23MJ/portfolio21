@@ -8,6 +8,9 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeroComponent } from './pages/hero/hero.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { ExtfooterComponent } from './components/extfooter/extfooter.component';
+import { FeaturedComponent } from './components/featured/featured.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +18,10 @@ import { HeroComponent } from './pages/hero/hero.component';
     AboutComponent,
     ContactComponent,
     NavbarComponent,
-    HeroComponent
+    HeroComponent,
+    FooterComponent,
+    ExtfooterComponent,
+    FeaturedComponent
   ],
   imports: [
     BrowserModule,

@@ -40,6 +40,27 @@ export class AppComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     console.log("init")
     let el = document.querySelector('[data-scroll-container]');
+
+
+    // CURSOR
+
+    let cursor = document.querySelector(".cursor")
+    let cursorOuter = document.querySelector(".cursor-outer")
+
+    // MOUSEMOVE
+    document.addEventListener("mousemove", e => {
+      cursor.setAttribute("style", `top: ${e.pageY - 17}px; left: ${e.pageX - 17}px;`)
+      cursorOuter.setAttribute("style", `top: ${e.pageY - 32}px; left: ${e.pageX - 32}px;`)
+    })
+
+    // CLICK
+    document.addEventListener("click", () => {
+      cursorOuter.classList.add("expand")
+      setTimeout(() => {
+        cursorOuter.classList.remove("expand")
+      }, 500);
+    })
+
     // this.scrollService.initScroll(el);
   }
 
