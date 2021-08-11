@@ -11,6 +11,14 @@ export class HeroComponent implements OnInit, AfterViewInit {
   constructor(private anim: ScrollService) { }
 
   ngOnInit(): void {
+    // document.querySelector(".to-outline").addEventListener("mouseover", e => {
+      // let spans = document.querySelectorAll(".to-outline span")
+      // spans.forEach((span) => span.classList.add("text-outline"))
+    // })
+    // document.querySelector(".to-outline").addEventListener("mouseleave", e => {
+      // let spans = document.querySelectorAll(".to-outline span")
+      // spans.forEach((span) => span.classList.remove("text-outline"))
+    // })
   }
 
   ngAfterViewInit() {

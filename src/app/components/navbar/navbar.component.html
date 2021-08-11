@@ -1,6 +1,9 @@
 <nav style="" class="p-5 d-flex justify-content-between align-items-center">
   <div class="brand">
-    <span class="fs-24 fw-bold">morch23mj</span>
+    <a class="fs-24 fw-bold fake-link" routerLink="/">
+      morch23mj
+    </a>
+
   </div>
   <div class="menu d-flex align-items-center">
     <div class="d-flex flex-column me-2">
@@ -10,29 +13,38 @@
     <div style="position: relative; top: -3px">menu</div>
   </div>
   <div class="menu-content">
-    <div class="links ps-5">
-      <ul class="fake-list p-0 m-0">
-        <li>
-          <a class="fs-64 fw-bold fake-link" routerLink="/">
-            Home
+    <div class="links">
+      <div class="fake-list d-flex flex-column align-items-center">
+        <a class="fs-56 fw-bold text-outline navbar-link" (click)="toggleMenu()" data-text="Home" routerLink="/">
+          Home
+        </a>
+        <a class="fs-56 fw-bold text-outline navbar-link" (click)="toggleMenu()" data-text="About" routerLink="/about">
+          About
+        </a>
+        <a class="fs-56 fw-bold text-outline navbar-link" (click)="toggleMenu()" data-text="Projects"
+          routerLink="/projects">
+          Projects
+        </a>
+        <a class="fs-56 fw-bold text-outline navbar-link" (click)="toggleMenu()" data-text="Contact"
+          routerLink="/contact">
+          Contact
+        </a>
+        <div class="d-flex justify-content-center mt-5">
+          <a class="me-3 fs-24 footer-link" target="_blank"
+            href="https://www.linkedin.com/in/morchid-chellali-15150513b/">
+            <i class="fab fa-linkedin-in"></i>
           </a>
-        </li>
-        <li>
-          <a class="fs-64 fw-bold fake-link" routerLink="/about">
-            About
+          <a class="me-3 fs-24 footer-link" target="_blank" href="https://github.com/Morched23MJ">
+            <i class="fab fa-github"></i>
           </a>
-        </li>
-        <li>
-          <a class="fs-64 fw-bold fake-link" routerLink="/projects">
-            Projects
+          <a class="me-3 fs-24 footer-link" target="_blank" href="https://codepen.io/Morched23MJ/">
+            <i class="fab fa-codepen"></i>
           </a>
-        </li>
-        <li>
-          <a class="fs-64 fw-bold fake-link" routerLink="/contact">
-            Contact
+          <a class="fs-24 footer-link" target="_blank" href="https://www.instagram.com/morched23mj/">
+            <i class="fab fa-instagram"></i>
           </a>
-        </li>
-      </ul>
+        </div>
     </div>
+  </div>
   </div>
 </nav>

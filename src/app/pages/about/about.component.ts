@@ -14,7 +14,7 @@ export class AboutComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    let firstTween = this.scrollService.gsap.to(".red", { scrollTrigger: ".red", duration: 1, opacity: 0 })
+    // let firstTween = this.scrollService.gsap.to(".red", { scrollTrigger: ".red", duration: 1, opacity: 0 })
   }
 
 }

@@ -14,6 +14,9 @@ export class AppComponent implements OnInit, AfterViewInit {
   title = 'portfolio';
   loading$;
 
+  cursor;
+  cursorOuter
+
   @ViewChild('scrollContent') scrollContent: ElementRef;
 
   constructor(private router: Router, private scrollService: ScrollService) {
@@ -39,27 +42,9 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     console.log("init")
-    let el = document.querySelector('[data-scroll-container]');
+    // let el = document.querySelector('[data-scroll-container]');
 
 
-    // CURSOR
-
-    let cursor = document.querySelector(".cursor")
-    let cursorOuter = document.querySelector(".cursor-outer")
-
-    // MOUSEMOVE
-    document.addEventListener("mousemove", e => {
-      cursor.setAttribute("style", `top: ${e.pageY - 17}px; left: ${e.pageX - 17}px;`)
-      cursorOuter.setAttribute("style", `top: ${e.pageY - 32}px; left: ${e.pageX - 32}px;`)
-    })
-
-    // CLICK
-    document.addEventListener("click", () => {
-      cursorOuter.classList.add("expand")
-      setTimeout(() => {
-        cursorOuter.classList.remove("expand")
-      }, 500);
-    })
 
     // this.scrollService.initScroll(el);
   }
@@ -68,6 +53,51 @@ export class AppComponent implements OnInit, AfterViewInit {
     // let el = document.querySelector('[data-scroll-container]');
     // this.scrollService.initScroll(el);
     // this.scrollService.updateScroll(this.scrollContent.nativeElement)
+
+
+
+    // CURSOR
+
+
+    // document.addEventListener("scroll", this.updateCursor)
+
+    // MOUSEMOVE
+    document.addEventListener("mousemove", this.updateCursor)
+
+
+    let cta_link = document.querySelector(".cta-link")
+    console.log(cta_link)
+    cta_link.addEventListener("mouseover", e => {
+      document.querySelector(".cursor-outer").classList.add("expand");
+      setTimeout(() => {
+        document.querySelector(".cursor-outer").classList.remove("expand")
+      }, 500);
+    })
+
+    document.querySelectorAll(".cta-link").forEach((e) => e.addEventListener("mouseover", e => {
+      console.log("Mhm")
+      document.querySelector(".cursor-outer").classList.add("expand");
+      setTimeout(() => {
+        document.querySelector(".cursor-outer").classList.remove("expand")
+      }, 500);
+    }))
+
+    // CLICK
+    document.addEventListener("click", () => {
+      this.cursorOuter.classList.add("expand")
+      setTimeout(() => {
+        this.cursorOuter.classList.remove("expand")
+      }, 500);
+    })
   }
 
+
+  updateCursor(event) {
+    // console.log("scroll")
+    this.cursor = document.querySelector(".cursor")
+    this.cursorOuter = document.querySelector(".cursor-outer")
+
+    this.cursor.setAttribute("style", `top: ${event.pageY - 16}px; left: ${event.pageX + 10}px;`)
+    this.cursorOuter.setAttribute("style", `top: ${event.pageY - 32}px; left: ${event.pageX - 32}px;`)
+  }
 }

@@ -17,7 +17,6 @@ export class NavbarComponent implements OnInit {
     this.menuContent = document.querySelector(".menu-content");
 
     this.menu.addEventListener("click", () => {
-      console.log("Ha.")
       this.toggleMenu();
     })
   }

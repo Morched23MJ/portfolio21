@@ -11,6 +11,8 @@ import { HeroComponent } from './pages/hero/hero.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ExtfooterComponent } from './components/extfooter/extfooter.component';
 import { FeaturedComponent } from './components/featured/featured.component';
+import { ExpertiseComponent } from './components/expertise/expertise.component';
+import { JourneyComponent } from './components/journey/journey.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { FeaturedComponent } from './components/featured/featured.component';
     HeroComponent,
     FooterComponent,
     ExtfooterComponent,
-    FeaturedComponent
+    FeaturedComponent,
+    ExpertiseComponent,
+    JourneyComponent
   ],
   imports: [
     BrowserModule,
