@@ -14,6 +14,8 @@ export class AppComponent implements OnInit, AfterViewInit {
   title = 'portfolio';
   loading$;
 
+  scroll;
+
   cursor;
   cursorOuter
 
@@ -33,10 +35,10 @@ export class AppComponent implements OnInit, AfterViewInit {
         if (x instanceof NavigationStart) return true
         else setTimeout(() => {
           return false
-        }, 2000);
+        }, 300);
       }),
-      debounceTime(2000),
-      tap(x => console.log(x))
+      debounceTime(300),
+      tap(x => window.dispatchEvent(new Event('resize')))
     );
   }
 
@@ -44,17 +46,34 @@ export class AppComponent implements OnInit, AfterViewInit {
     console.log("init")
     // let el = document.querySelector('[data-scroll-container]');
 
+    // this.scroll = new LocomotiveScroll({
+    //   el: document.querySelector('[data-scroll-container]'),
+    //   smooth: true,
+    //   getDirection: true,
+    // });
 
 
     // this.scrollService.initScroll(el);
   }
 
   ngAfterViewInit() {
+
+    this.scrollService.smoothScroll("#content", null, 1);
+
     // let el = document.querySelector('[data-scroll-container]');
     // this.scrollService.initScroll(el);
     // this.scrollService.updateScroll(this.scrollContent.nativeElement)
 
+    // const ro = new ResizeObserver((entries, observer) => {
+    //   entries.forEach((entry, index) => {
+    //     const { inlineSize: width, blockSize: height } = entry.contentBoxSize[0];
+    //     if(this.scroll) {
+    //       this.scroll.update();
+    //     }
+    //   });
+    // });
 
+    // ro.observe(this.scrollContent.nativeElement);
 
     // CURSOR
 
@@ -90,6 +109,8 @@ export class AppComponent implements OnInit, AfterViewInit {
       }, 500);
     })
   }
+
+
 
 
   updateCursor(event) {
