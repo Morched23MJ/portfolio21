@@ -13,17 +13,18 @@ export class FeaturedComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    let projects = document.querySelectorAll(".project")
-    console.log(projects)
-    projects.forEach(project => {
-      project.addEventListener("mouseover", e => {
-        console.log(e);
-        project.querySelector(".project-image").setAttribute("style", `display: block; top: ${e['clientY']}; left: ${e['clientY']}; max-height: 400px; width: 400px;`)
-      })
-      project.addEventListener("mouseleave", e => {
-        console.log("HA");
-        project.querySelector(".project-image").setAttribute("style", `display: none;`)
-      })
-    })
+    // It's working: Can't click CASE STUDY BTN THO.
+    // let projects = document.querySelectorAll(".project")
+    // console.log(projects)
+    // projects.forEach(project => {
+    //   project.addEventListener("mousemove", e => {
+    //     console.log(e);
+    //     project.querySelector(".project-image").setAttribute("style", `display: block; top: ${e['clientY'] + window.scrollY - 200}px; left: ${e['clientX'] - 200}px; max-height: 400px; width: 400px;`)
+    //   })
+    //   project.addEventListener("mouseleave", e => {
+    //     console.log("HA");
+    //     project.querySelector(".project-image").setAttribute("style", `display: none;`)
+    //   })
+    // })
   }
 }
