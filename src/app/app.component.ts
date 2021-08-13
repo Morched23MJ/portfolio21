@@ -1,10 +1,7 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import LocomotiveScroll from 'locomotive-scroll';
-import { ResizeObserver } from '@juggle/resize-observer';
-import { ScrollService } from './services/scroll.service';
-import { debounceTime, filter, map, tap } from 'rxjs/operators'
-import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
 
+import { ScrollService } from './services/scroll.service';
+import { GsapService } from './services/gsap.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -17,70 +14,30 @@ export class AppComponent implements OnInit, AfterViewInit {
   scroll;
 
   cursor;
-  cursorOuter
+  cursorOuter;
 
-  @ViewChild('scrollContent') scrollContent: ElementRef;
+  mouseX;
+  mouseY;
 
-  constructor(private router: Router, private scrollService: ScrollService) {
-    this.loading$ = this.router.events.pipe(
-      filter(
-        x =>
-          x instanceof NavigationStart ||
-          x instanceof NavigationEnd ||
-          x instanceof NavigationCancel ||
-          x instanceof NavigationError
-      ),
-      map(x => {
-        console.log(x);
-        if (x instanceof NavigationStart) return true
-        else setTimeout(() => {
-          return false
-        }, 300);
-      }),
-      debounceTime(300),
-      tap(x => window.dispatchEvent(new Event('resize')))
-    );
+
+  constructor(private scrollService: ScrollService, private gsapService: GsapService) {
   }
 
   ngOnInit() {
-    console.log("init")
-    // let el = document.querySelector('[data-scroll-container]');
-
-    // this.scroll = new LocomotiveScroll({
-    //   el: document.querySelector('[data-scroll-container]'),
-    //   smooth: true,
-    //   getDirection: true,
-    // });
-
-
-    // this.scrollService.initScroll(el);
   }
 
   ngAfterViewInit() {
 
     this.scrollService.smoothScroll("#content", null, 1);
 
-    // let el = document.querySelector('[data-scroll-container]');
-    // this.scrollService.initScroll(el);
-    // this.scrollService.updateScroll(this.scrollContent.nativeElement)
 
-    // const ro = new ResizeObserver((entries, observer) => {
-    //   entries.forEach((entry, index) => {
-    //     const { inlineSize: width, blockSize: height } = entry.contentBoxSize[0];
-    //     if(this.scroll) {
-    //       this.scroll.update();
-    //     }
-    //   });
-    // });
 
-    // ro.observe(this.scrollContent.nativeElement);
 
     // CURSOR
 
 
-    // document.addEventListener("scroll", this.updateCursor)
-
     // MOUSEMOVE
+    document.addEventListener("scroll", this.updateCursor)
     document.addEventListener("mousemove", this.updateCursor)
 
 
@@ -114,11 +71,17 @@ export class AppComponent implements OnInit, AfterViewInit {
 
 
   updateCursor(event) {
-    // console.log("scroll")
     this.cursor = document.querySelector(".cursor")
     this.cursorOuter = document.querySelector(".cursor-outer")
 
-    this.cursor.setAttribute("style", `top: ${event.pageY - 16}px; left: ${event.pageX + 10}px;`)
-    this.cursorOuter.setAttribute("style", `top: ${event.pageY - 32}px; left: ${event.pageX - 32}px;`)
+    if (event.type == "mousemove") {
+      console.log("H")
+      this.mouseX = event.pageX;
+      this.mouseY = event.pageY;
+      this.cursor.setAttribute("style", `top: ${this.mouseY - 16}px; left: ${this.mouseX + 10}px;`)
+      this.cursorOuter.setAttribute("style", `top: ${this.mouseY - 32}px; left: ${this.mouseX - 32}px;`)
+    } else if (event.type == "scroll") {
+      document.dispatchEvent(new Event('mousemove'))
+    }
   }
 }
