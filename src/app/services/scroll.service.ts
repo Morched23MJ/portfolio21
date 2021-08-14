@@ -131,7 +131,7 @@ export class ScrollService {
   }
 
   updateScroll() {
-    document.querySelector("html").setAttribute("style", "overflow: hidden")
+    // document.querySelector("html").setAttribute("style", "overflow: hidden")
 
     setTimeout(() => {
       window.dispatchEvent(new Event('resize'))
@@ -139,15 +139,15 @@ export class ScrollService {
 
     // PATCH FIX
     setTimeout(() => {
-      this.gsapService.st.refresh();
+      // this.gsapService.st.refresh();
     }, 1000);
 
     setTimeout(() => {
-      this.setScroll(0);
+      // this.setScroll(0);
     }, 1500);
 
     setTimeout(() => {
-      document.querySelector("html").setAttribute("style", "overflow: visible")
+      // document.querySelector("html").setAttribute("style", "overflow: visible")
     }, 2800);
 
   }
