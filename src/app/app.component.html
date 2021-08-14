@@ -1,11 +1,16 @@
 <div class="cursor"></div>
 <div class="cursor-outer"></div>
+<div class="transit">
+  <div class="w-100 h-100 d-flex align-items-center justify-content-center">
+    <span class="text fw-bold fs-64"></span>
+  </div>
+</div>
 <div id="viewport" class="">
   <div class="noisy"></div>
   <app-navbar style="position: fixed; z-index: 999;" class="w-100"></app-navbar>
   <div id="content" style="z-index: 10;" class="overflow-hidden scroll-container page-container" data-scroll-container
     #scrollContent>
-    <router-outlet></router-outlet>
+    <router-outlet #outlet="outlet"></router-outlet>
     <app-footer></app-footer>
   </div>
   <div *ngIf="loading$ | async" class="route-trans-overlay purple w-100">

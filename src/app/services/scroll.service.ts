@@ -15,6 +15,11 @@ export class ScrollService {
 
   routeChange$: Subscription;
 
+  content;
+  viewport;
+
+  setScroll;
+
   constructor(private router: Router, private gsapService: GsapService) {
     this.routeChange$ = this.router.events.pipe(
       filter(
@@ -24,12 +29,18 @@ export class ScrollService {
           x instanceof NavigationCancel ||
           x instanceof NavigationError
       ),
-      map(x => (x instanceof NavigationStart)),
-    ).subscribe(change => { if (change) this.updateScroll() });
+      map(x => (x instanceof NavigationEnd)),
+    ).subscribe(change => {
+      if (change) {
+        this.updateScroll()
+      }
+    });
   }
 
   smoothScroll(content, viewport, smoothness) {
     content = this.gsapService.gsap.utils.toArray(content)[0];
+    this.content = content;
+    this.viewport = viewport || content.parentNode;
     smoothness = smoothness || 1;
 
     this.gsapService.gsap.set(viewport || content.parentNode, {
@@ -57,6 +68,8 @@ export class ScrollService {
       },
       height,
       isProxyScrolling;
+
+    this.setScroll = setScroll;
 
     function onResize() {
       height = content.clientHeight;
@@ -118,7 +131,24 @@ export class ScrollService {
   }
 
   updateScroll() {
-    // ScrollTrigger.refresh();
-    window.dispatchEvent(new Event('resize'))
+    document.querySelector("html").setAttribute("style", "overflow: hidden")
+
+    setTimeout(() => {
+      window.dispatchEvent(new Event('resize'))
+    }, 500);
+
+    // PATCH FIX
+    setTimeout(() => {
+      this.gsapService.st.refresh();
+    }, 1000);
+
+    setTimeout(() => {
+      this.setScroll(0);
+    }, 1500);
+
+    setTimeout(() => {
+      document.querySelector("html").setAttribute("style", "overflow: visible")
+    }, 2800);
+
   }
 }

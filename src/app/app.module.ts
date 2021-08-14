@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +14,10 @@ import { ExtfooterComponent } from './components/extfooter/extfooter.component';
 import { FeaturedComponent } from './components/featured/featured.component';
 import { ExpertiseComponent } from './components/expertise/expertise.component';
 import { JourneyComponent } from './components/journey/journey.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { DelayService } from './interceptors/delay.service';
+import { ProjectsComponent } from './pages/projects/projects.component';
+import { KravmagaComponent } from './pages/casestudies/kravmaga/kravmaga.component';
 
 @NgModule({
   declarations: [
@@ -25,14 +30,19 @@ import { JourneyComponent } from './components/journey/journey.component';
     ExtfooterComponent,
     FeaturedComponent,
     ExpertiseComponent,
-    JourneyComponent
+    JourneyComponent,
+    ProjectsComponent,
+    KravmagaComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     NgbModule
   ],
-  providers: [],
+  providers: [
+    [{ provide: HTTP_INTERCEPTORS, useClass: DelayService, multi: true }]
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

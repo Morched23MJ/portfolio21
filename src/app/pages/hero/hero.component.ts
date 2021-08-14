@@ -1,5 +1,5 @@
 import { trigger } from '@angular/animations';
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { GsapService } from 'src/app/services/gsap.service';
 import { ScrollService } from 'src/app/services/scroll.service';
 
@@ -8,7 +8,7 @@ import { ScrollService } from 'src/app/services/scroll.service';
   templateUrl: './hero.component.html',
   styleUrls: ['./hero.component.sass']
 })
-export class HeroComponent implements OnInit, AfterViewInit {
+export class HeroComponent implements OnInit, OnDestroy, AfterViewInit {
 
   gsap: GSAP;
   st;
@@ -17,6 +17,10 @@ export class HeroComponent implements OnInit, AfterViewInit {
     this.gsap = gsapService.gsap;
     this.st = gsapService.st;
   }
+
+  a1;
+  a2;
+  a3;
 
   ngOnInit(): void {
     // document.querySelector(".to-outline").addEventListener("mouseover", e => {
@@ -31,45 +35,109 @@ export class HeroComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
 
-    this.gsap.from(
-      ".hero", {
-      y: 200,
-      opacity: 0,
-      duration: 2,
-    },
-    )
 
-    // not working as expected: wanted to pull it to top when scrolled
-    // this.gsap.to(
-    //   ".hero", {
-    //   opacity: .3,
-    //   duration: 3,
-    //   scrollTrigger: {
-    //     trigger: ".hero",
-    //     scrub: true,
-    //     start: 'top 100',
-    //     end: '+=300',
-    //     toggleActions: 'play none none reverse',
-    //     markers: true
+    // HERO
+    // this.gsap.from(
+    //   ".hero",
+    //   {
+    //     y: 200,
+    //     opacity: 0,
+    //     scrollTrigger: {
+    //       trigger: ".hero",
+    //       start: "top top",
+    //       // end: "top top",
+    //       scrub: true
+    //     }
     //   }
-    // },
     // )
 
-    this.gsap.from(
-      ".underhero", {
-      y: 200,
-      opacity: 0,
-      duration: 1,
-      scrollTrigger: {
-        trigger: ".underhero",
-        scrub: true,
-        start: 'top 75%',
-        end: '+=300',
-        toggleActions: 'play none none reverse',
-        // markers: true
+    this.gsap.to(
+      ".hero",
+      {
+        y: -200,
+        // opacity: 0,
+        scrollTrigger: {
+          trigger: ".hero",
+          start: "top top",
+          end: "bottom top",
+          scrub: true
+        }
       }
-    },
     )
+
+
+    // MARQUEE
+    this.a3 = this.gsap.from(
+      ".marquee",
+      {
+        x: -500,
+        opacity: .9,
+        duration: 3,
+        scrollTrigger: {
+          trigger: ".marquee",
+          scrub: true,
+          start: 'top bottom',
+          end: 'bottom top',
+          toggleActions: 'play none none reverse',
+          markers: true
+        }
+      },
+    )
+
+    // UNDERHERO
+    this.gsap.from(
+      ".underhero",
+      {
+        y: 200,
+        opacity: 0,
+        scrollTrigger: {
+          trigger: ".underhero",
+          scrub: true,
+          start: 'top 75%',
+          end: '+=300',
+        }
+      },
+    )
+
+    // FIX:
+    // this.gsap.to(
+    //   ".underhero",
+    //   {
+    //     y: -400,
+    //     // opacity: 0,
+    //     scrollTrigger: {
+    //       trigger: ".underhero",
+    //       scrub: true,
+    //       start: 'top top',
+    //       end: 'bottom top',
+    //     }
+    //   },
+    // )
+
+
+    // Selected Work
+    this.gsap.from(
+      ".selected-work",
+      {
+        y: 300,
+        opacity: 0,
+        scrollTrigger: {
+          trigger: ".selected-work",
+          scrub: true,
+          start: 'top 75%',
+          end: '+=300',
+        }
+      },
+    )
+
+
+
+
+
+
+
+
+
 
     this.st.create({
       trigger: ".section",
@@ -92,21 +160,6 @@ export class HeroComponent implements OnInit, AfterViewInit {
     // }
     // )
 
-    // MARQUEE
-    this.gsap.from(
-      ".marquee", {
-      x: -300,
-      opacity: .9,
-      duration: 3,
-      scrollTrigger: {
-        trigger: ".marquee",
-        scrub: true,
-        start: 'top bottom',
-        toggleActions: 'play none none reverse',
-        markers: true
-      }
-    },
-    )
 
 
     // this.anim.gsap.to(".featured .orange", {
@@ -123,5 +176,8 @@ export class HeroComponent implements OnInit, AfterViewInit {
     //   x: -100,
     //   duration: 5,
     // })
+  }
+
+  ngOnDestroy() {
   }
 }
