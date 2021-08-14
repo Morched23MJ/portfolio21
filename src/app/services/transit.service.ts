@@ -23,7 +23,7 @@ export class TransitService {
         this.animateTransit(change)
         // window.scrollTo({ top: 0, behavior: 'auto'})
       }
-      // PATCH FIX
+      // PATCH FIXs
       // if (change instanceof NavigationEnd) setTimeout(() => {
       //   window.scrollTo(0, 0)
       // }, 1500);
