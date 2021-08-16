@@ -65,6 +65,21 @@ export class HeroComponent implements OnInit, OnDestroy, AfterViewInit {
       }
     )
 
+    // SCROLL SIGN
+    this.gsap.to(
+      ".scroll-sign",
+      {
+        y: -100,
+        opacity: 0,
+        scrollTrigger: {
+          trigger: ".marquee",
+          start: "top bottom",
+          end: "top 50%",
+          scrub: true
+        }
+      }
+    )
+
 
     // MARQUEE
     this.a3 = this.gsap.from(
@@ -79,7 +94,7 @@ export class HeroComponent implements OnInit, OnDestroy, AfterViewInit {
           start: 'top bottom',
           end: 'bottom top',
           toggleActions: 'play none none reverse',
-          markers: true
+          // markers: true
         }
       },
     )

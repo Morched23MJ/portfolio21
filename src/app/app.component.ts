@@ -6,6 +6,7 @@ import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Rout
 import { pageTransition } from './transitions';
 import { filter, map } from 'rxjs/operators';
 import { TransitService } from './services/transit.service';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -24,9 +25,12 @@ export class AppComponent implements OnInit, AfterViewInit {
   mouseY;
 
 
-  constructor(private transit: TransitService, private scrollService: ScrollService, private gsapService: GsapService) {
+  constructor(private translate: TranslateService, private transit: TransitService, private scrollService: ScrollService, private gsapService: GsapService) {
+    translate.setDefaultLang('en');
+  }
 
-
+  useLanguage(language: string): void {
+    this.translate.use(language);
   }
 
   ngOnInit() {
@@ -42,7 +46,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
     // MOUSEMOVE
     // document.addEventListener("scroll", this.updateCursor)
-    document.addEventListener("mousemove", this.updateCursor)
+    // document.addEventListener("mousemove", this.updateCursor)
 
 
 

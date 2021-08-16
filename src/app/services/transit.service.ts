@@ -20,7 +20,7 @@ export class TransitService {
     ).subscribe(change => {
       console.log(change)
       if (change instanceof NavigationStart) {
-        // this.animateTransit(change)
+        this.animateTransit(change)
         // window.scrollTo({ top: 0, behavior: 'auto'})
       }
       // PATCH FIXs

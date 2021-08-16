@@ -1,5 +1,5 @@
-<div class="cursor"></div>
-<div class="cursor-outer"></div>
+<div class="d-none cursor"></div>
+<div class="d-none cursor-outer"></div>
 <div class="transit">
   <div class="w-100 h-100 d-flex align-items-center justify-content-center">
     <span class="text fw-bold fs-64"></span>
@@ -18,4 +18,21 @@
       morch23mj
     </h1>
   </div>
+</div>
+
+<!-- LANGUAGE! -->
+<div class="d-none" style="margin-top: 200px;">
+  <!-- https://www.codeandweb.com/babeledit/tutorials/how-to-translate-your-angular-app-with-ngx-translate -->
+  <button (click)="useLanguage('en')">en</button>
+  <button (click)="useLanguage('fr')">fr</button>
+  <h1>{{ 'demo.title' | translate }}</h1>
+
+  <!-- translation: translation pipe -->
+  <p>{{ 'demo.text' | translate }}</p>
+
+  <!-- translation: directive (key as attribute)-->
+  <p [translate]="'demo.text'"></p>
+
+  <!-- translation: directive (key as content of element) -->
+  <p translate>demo.text</p>
 </div>

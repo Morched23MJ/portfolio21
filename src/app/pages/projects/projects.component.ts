@@ -64,7 +64,7 @@ export class ProjectsComponent implements OnInit, AfterViewInit {
           });
 
           project.addEventListener('mouseenter', () => {
-            this.gsap.to(project.querySelector(".project-image"), { transform: "scale(.8)", opacity: .65, zIndex: 1 })
+            this.gsap.to(project.querySelector(".project-image"), { transform: "scale(.8)", opacity: .85, zIndex: 1 })
             this.gsap.to(project.querySelector(".project-content"), { zIndex: 2 })
           })
 
